@@ -16,6 +16,7 @@
 		9BA981E11D9EE5D6006A9E0F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BA981DF1D9EE5D6006A9E0F /* LaunchScreen.storyboard */; };
 		9BA981EB1D9EEA9D006A9E0F /* NetworkWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BA981EA1D9EEA9D006A9E0F /* NetworkWrapper.m */; };
 		9BA981EF1D9F0749006A9E0F /* ListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BA981EE1D9F0749006A9E0F /* ListTableViewController.m */; };
+		9BA981F21D9F155D006A9E0F /* ListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BA981F11D9F155D006A9E0F /* ListTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,8 @@
 		9BA981EA1D9EEA9D006A9E0F /* NetworkWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NetworkWrapper.m; path = NetworkWrapper/NetworkWrapper.m; sourceTree = "<group>"; };
 		9BA981ED1D9F0749006A9E0F /* ListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ListTableViewController.h; path = ListViewController/ListTableViewController.h; sourceTree = "<group>"; };
 		9BA981EE1D9F0749006A9E0F /* ListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ListTableViewController.m; path = ListViewController/ListTableViewController.m; sourceTree = "<group>"; };
+		9BA981F01D9F155D006A9E0F /* ListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ListTableViewCell.h; path = ListViewController/ListTableViewCell.h; sourceTree = "<group>"; };
+		9BA981F11D9F155D006A9E0F /* ListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ListTableViewCell.m; path = ListViewController/ListTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +107,8 @@
 			children = (
 				9BA981ED1D9F0749006A9E0F /* ListTableViewController.h */,
 				9BA981EE1D9F0749006A9E0F /* ListTableViewController.m */,
+				9BA981F01D9F155D006A9E0F /* ListTableViewCell.h */,
+				9BA981F11D9F155D006A9E0F /* ListTableViewCell.m */,
 			);
 			name = ListViewController;
 			sourceTree = "<group>";
@@ -184,6 +189,7 @@
 				9BA981D61D9EE5D6006A9E0F /* ViewController.m in Sources */,
 				9BA981EB1D9EEA9D006A9E0F /* NetworkWrapper.m in Sources */,
 				9BA981D31D9EE5D6006A9E0F /* AppDelegate.m in Sources */,
+				9BA981F21D9F155D006A9E0F /* ListTableViewCell.m in Sources */,
 				9BA981D01D9EE5D6006A9E0F /* main.m in Sources */,
 				9BA981EF1D9F0749006A9E0F /* ListTableViewController.m in Sources */,
 			);

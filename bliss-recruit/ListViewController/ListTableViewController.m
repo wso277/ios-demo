@@ -8,6 +8,7 @@
 
 #import "ListTableViewController.h"
 #import "NetworkWrapper.h"
+#import "ListTableViewCell.h"
 
 @interface ListTableViewController ()
 
@@ -51,6 +52,12 @@
         if (success) {
             self.questions = [self.questions arrayByAddingObjectsFromArray:(NSArray*)json];
             self.currentOffset += self.limit;
+            
+            int possibleCells = self.tableView.frame.size.height / 44;
+            if (possibleCells > self.currentOffset) {
+                [self performListRequest];
+            }
+            
         } else {
             NSLog(@"[performListRequest]: Error fetching questions");
         }
@@ -77,10 +84,40 @@
     return [self.questions count];
 }
 
+-(void)fetchImageWithCell:(ListTableViewCell*)cell andQuestion:(NSDictionary*)question
+{
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[question valueForKey:@"thumb_url"]]];
+    
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    
+    [[session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        
+        if (data && [cell.question valueForKey:@"id"] == [question valueForKey:@"id"]) {
+            
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                cell.imageView.image = [UIImage imageWithData:data];
+//            });
+            
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                cell.imageView.image = [UIImage imageWithData:data];
+            }];
+            
+        }
+        
+    }] resume];
+}
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+
     
-    UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@""];
+    ListTableViewCell *cell = (ListTableViewCell*)[self.tableView dequeueReusableCellWithIdentifier:@"listCellIdentifier" forIndexPath:indexPath];
+    
+    if (cell == nil) {
+        cell = [[ListTableViewCell alloc] init];
+    }
+    
+//    ListTableViewCell *cell = (ListTableViewCell*)([[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"listCellIdentifier"]);
     
     // Configure the cell...
     
@@ -89,11 +126,19 @@
     if (question != nil) {
         cell.textLabel.text = [question valueForKey:@"question"];
         cell.detailTextLabel.text = [question valueForKey:@"published_at"];
-        NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[question valueForKey:@"thumb_url"]]];
-        cell.imageView.image = [UIImage imageWithData:imageData];
+//        NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[question valueForKey:@"thumb_url"]]];
+//        cell.imageView.image = [UIImage imageWithData:imageData];
+        cell.question = question;
+        [self fetchImageWithCell:cell andQuestion:question];
+        
     }
     
     return cell;
+}
+
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    [self performListRequest];
 }
 
 
