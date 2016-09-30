@@ -32,6 +32,8 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
+    self.title = @"Questions";
+    
     self.limit = 5;
     self.currentOffset = 0;
     
@@ -46,14 +48,16 @@
                                                              options:kNilOptions
                                                                error:nil];
         
-        NSLog(@"%@", json);
-        
         if (success) {
             self.questions = [self.questions arrayByAddingObjectsFromArray:(NSArray*)json];
             self.currentOffset += self.limit;
         } else {
-            
+            NSLog(@"[performListRequest]: Error fetching questions");
         }
+        
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [self.tableView reloadData];
+        }];
     }];
 }
 
@@ -65,24 +69,33 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
+    
+    return [self.questions count];
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    
+    UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@""];
     
     // Configure the cell...
     
+    NSDictionary *question = [self.questions objectAtIndex:indexPath.row];
+    
+    if (question != nil) {
+        cell.textLabel.text = [question valueForKey:@"question"];
+        cell.detailTextLabel.text = [question valueForKey:@"published_at"];
+        NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[question valueForKey:@"thumb_url"]]];
+        cell.imageView.image = [UIImage imageWithData:imageData];
+    }
+    
     return cell;
 }
-*/
+
 
 /*
 // Override to support conditional editing of the table view.
