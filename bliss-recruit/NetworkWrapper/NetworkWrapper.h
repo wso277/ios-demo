@@ -18,4 +18,6 @@ typedef void (^NetworkRequestCompletionHandler) (NSData * _Nullable result, BOOL
 
 -(void)checkHealthStatusWithCompletionHandler:(_Nonnull NetworkRequestCompletionHandler) completionHandler;
 
+-(void)listQuestionsWithLimit:(int)limit withOffset:(int)offset andFilter:( NSString* _Nullable )filter withCompletionHandler:(_Nonnull NetworkRequestCompletionHandler)completionHandler;
+
 @end
