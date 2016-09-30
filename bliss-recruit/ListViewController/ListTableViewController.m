@@ -41,6 +41,21 @@
     [self performListRequest];
 }
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    if (self.currentFilter) {
+        if ([self.currentFilter isEqualToString:@""]) {
+            [self.searchBar becomeFirstResponder];
+        } else {
+            NSLog(@"%@", self.currentFilter);
+            self.searchBar.text = self.currentFilter;
+            //TODO Search
+        }
+    }
+}
+
 -(void)performListRequest
 {
     [[NetworkWrapper sharedInstance] listQuestionsWithLimit:self.limit withOffset:self.currentOffset andFilter:self.currentFilter withCompletionHandler:^(NSData * _Nullable result, BOOL success, NSError * _Nullable error) {

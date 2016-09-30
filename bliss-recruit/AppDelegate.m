@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "ListTableViewController.h"
 
 @interface AppDelegate ()
 
@@ -49,6 +50,51 @@
     [self saveContext];
 }
 
+- (NSString *)valueForKey:(NSString *)key
+           fromQueryItems:(NSArray *)queryItems
+{
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name=%@", key];
+    NSURLQueryItem *queryItem = [[queryItems
+                                  filteredArrayUsingPredicate:predicate]
+                                 firstObject];
+    return queryItem.value;
+}
+
+
+-(BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options
+{
+    NSLog(@"%@", url);
+ 
+    if ([url.absoluteString containsString:@"blissrecruitment"]) {
+        
+        if ([url.absoluteString containsString:@"question_id"]) {
+            
+        } else {
+            UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            UINavigationController *navController = [sb instantiateViewControllerWithIdentifier:@"ListNavigationController"];
+            
+            NSURLComponents *urlComponents = [NSURLComponents componentsWithURL:url
+                                                        resolvingAgainstBaseURL:NO];
+            NSArray *queryItems = urlComponents.queryItems;
+            NSString *filter = [self valueForKey:@"question_filter"
+                                  fromQueryItems:queryItems];
+            
+            if (filter) {
+                ((ListTableViewController*)(navController.topViewController)).currentFilter = filter;
+            }
+
+            self.window.rootViewController = navController;
+        }
+        
+        
+        
+        return YES;
+    }
+    
+    return NO;
+}
+                
+               
 
 #pragma mark - Core Data stack
 

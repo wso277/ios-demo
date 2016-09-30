@@ -13,5 +13,6 @@
 @property(nonatomic) int currentOffset, limit;
 @property(nonatomic, strong)    NSString* currentFilter;
 @property(nonatomic, strong)    NSArray* questions;
+@property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
 
 @end
