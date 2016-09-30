@@ -14,6 +14,7 @@
 		9BA981DC1D9EE5D6006A9E0F /* bliss_recruit.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9BA981DA1D9EE5D6006A9E0F /* bliss_recruit.xcdatamodeld */; };
 		9BA981DE1D9EE5D6006A9E0F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9BA981DD1D9EE5D6006A9E0F /* Assets.xcassets */; };
 		9BA981E11D9EE5D6006A9E0F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BA981DF1D9EE5D6006A9E0F /* LaunchScreen.storyboard */; };
+		9BA981EB1D9EEA9D006A9E0F /* NetworkWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BA981EA1D9EEA9D006A9E0F /* NetworkWrapper.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,8 @@
 		9BA981DD1D9EE5D6006A9E0F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9BA981E01D9EE5D6006A9E0F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9BA981E21D9EE5D6006A9E0F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9BA981E91D9EEA9D006A9E0F /* NetworkWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NetworkWrapper.h; path = NetworkWrapper/NetworkWrapper.h; sourceTree = "<group>"; };
+		9BA981EA1D9EEA9D006A9E0F /* NetworkWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NetworkWrapper.m; path = NetworkWrapper/NetworkWrapper.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +63,7 @@
 		9BA981CD1D9EE5D6006A9E0F /* bliss-recruit */ = {
 			isa = PBXGroup;
 			children = (
+				9BA981E81D9EEA3F006A9E0F /* NetworkWrapper */,
 				9BA981D11D9EE5D6006A9E0F /* AppDelegate.h */,
 				9BA981D21D9EE5D6006A9E0F /* AppDelegate.m */,
 				9BA981D41D9EE5D6006A9E0F /* ViewController.h */,
@@ -80,6 +84,15 @@
 				9BA981CF1D9EE5D6006A9E0F /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9BA981E81D9EEA3F006A9E0F /* NetworkWrapper */ = {
+			isa = PBXGroup;
+			children = (
+				9BA981E91D9EEA9D006A9E0F /* NetworkWrapper.h */,
+				9BA981EA1D9EEA9D006A9E0F /* NetworkWrapper.m */,
+			);
+			name = NetworkWrapper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -156,6 +169,7 @@
 			files = (
 				9BA981DC1D9EE5D6006A9E0F /* bliss_recruit.xcdatamodeld in Sources */,
 				9BA981D61D9EE5D6006A9E0F /* ViewController.m in Sources */,
+				9BA981EB1D9EEA9D006A9E0F /* NetworkWrapper.m in Sources */,
 				9BA981D31D9EE5D6006A9E0F /* AppDelegate.m in Sources */,
 				9BA981D01D9EE5D6006A9E0F /* main.m in Sources */,
 			);
@@ -318,6 +332,7 @@
 				9BA981E71D9EE5D6006A9E0F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
