@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DetailHeaderCell.h"
+#import "DetailAnswerCell.h"
 
-@interface DetailTableViewController : UITableViewController
+@interface DetailTableViewController : UITableViewController <AnswerCellDelegate>
 
-@property(nonatomic, strong)    NSDictionary *question;
+@property(nonatomic, strong)    NSMutableDictionary *question;
 @property(nonatomic, strong)    NSString *questionID;
 @property(nonatomic, strong)    NSArray *answers;
 

@@ -113,7 +113,7 @@
                                 <rect key="frame" x="0.0" y="92" width="375" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OnI-W7-HAZ" id="AEW-OP-zBy">
-                                    <frame key="frameInset" width="375" height="99.5"/>
+                                    <frame key="frameInset" width="375" height="100"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Uvn-zc-5oN">
@@ -165,7 +165,7 @@
                                 <rect key="frame" x="0.0" y="192" width="375" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6gz-SG-C0O" id="OeQ-Cy-TAQ">
-                                    <frame key="frameInset" width="375" height="79.5"/>
+                                    <frame key="frameInset" width="375" height="80"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="72N-bP-KPP">
@@ -183,6 +183,9 @@
                                                 <constraint firstAttribute="width" constant="32" id="Eec-j2-Gpp"/>
                                             </constraints>
                                             <state key="normal" title="Vote"/>
+                                            <connections>
+                                                <action selector="voteButtonPressed:" destination="6gz-SG-C0O" eventType="touchUpInside" id="h3P-o1-Dgr"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <constraints>

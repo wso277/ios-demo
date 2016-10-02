@@ -168,7 +168,7 @@
     
     NSDictionary *question = ((ListTableViewCell*)sender).question;
     
-    vc.question = question;
+    vc.question = [[NSMutableDictionary alloc] initWithDictionary:question];
     vc.questionID = [question objectForKey:@"id"];
 }
 

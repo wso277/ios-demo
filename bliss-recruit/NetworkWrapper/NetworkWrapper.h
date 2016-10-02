@@ -20,4 +20,7 @@ typedef void (^NetworkRequestCompletionHandler) (NSData * _Nullable result, BOOL
 
 -(void)listQuestionsWithLimit:(int)limit withOffset:(int)offset andFilter:( NSString* _Nullable )filter withCompletionHandler:(_Nonnull NetworkRequestCompletionHandler)completionHandler;
 
+-(void)updateQuestion:( NSMutableDictionary* _Nonnull )question withCompletionHandler:(_Nonnull NetworkRequestCompletionHandler)completionHandler;
+
+
 @end

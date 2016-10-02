@@ -93,4 +93,40 @@ static dispatch_once_t sharedInstanceToken;
     }] resume];
 }
 
+-(void)updateQuestion:(NSMutableDictionary*)question withCompletionHandler:(_Nonnull NetworkRequestCompletionHandler)completionHandler
+{
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@questions/%@", self.baseUrl, [question objectForKey:@"id"]]];
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    
+    [request setHTTPMethod:@"PUT"];
+    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request addValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    
+    [request setHTTPBody:[NSKeyedArchiver archivedDataWithRootObject:question]];
+    
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    
+    [[session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        
+        if (error) {
+            completionHandler(data, NO, error);
+        } else {
+            switch ([(NSHTTPURLResponse*)response statusCode]) {
+                case 201:
+                    
+                    completionHandler(data, YES, nil);
+                    break;
+                    
+                case 400:
+                    
+                    completionHandler(data, NO, error);
+                default:
+                    completionHandler(data, NO, error);
+                    break;
+            }
+        }
+    }] resume];
+}
+
 @end

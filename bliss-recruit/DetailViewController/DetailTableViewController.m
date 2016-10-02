@@ -7,8 +7,7 @@
 //
 
 #import "DetailTableViewController.h"
-#import "DetailHeaderCell.h"
-#import "DetailAnswerCell.h"
+#import "NetworkWrapper.h"
 
 @interface DetailTableViewController ()
 
@@ -105,7 +104,51 @@
     cell.answerLabel.text = [choice objectForKey:@"choice"];
     cell.countLabel.text = [NSString stringWithFormat:@"%@", [choice objectForKey:@"votes"]];
     
+    cell.choiceIndex = indexPath.row;
+    
+    cell.delegate = self;
+    
     return cell;
+}
+
+-(void)voteButtonPressed:(NSInteger)index
+{
+    NSMutableArray *arr = [[NSMutableArray alloc] initWithArray:self.answers];
+    
+    long current = [((NSNumber*)[[self.answers objectAtIndex:index] objectForKey:@"votes"]) longValue];
+    long new = current+1;
+    
+    NSDictionary *newChoice = @{
+                                @"choice" : [[self.answers objectAtIndex:index] objectForKey:@"choice"],
+                                @"votes"  : [NSNumber numberWithLong:new]
+                                };
+    
+    [arr setObject:newChoice atIndexedSubscript:index];
+    
+    [self.question setObject:arr forKey:@"choices"];
+//    self.answers = arr;
+    
+//    [self.tableView reloadData];
+    
+    [[NetworkWrapper sharedInstance] updateQuestion:self.question withCompletionHandler:^(NSData * _Nullable result, BOOL success, NSError * _Nullable error) {
+        
+        if (success) {
+            
+            NSMutableDictionary* json = [NSJSONSerialization JSONObjectWithData:result
+                                                                 options:kNilOptions
+                                                                   error:nil];
+            
+            self.question = [[NSMutableDictionary alloc] initWithDictionary:json];
+            
+            self.answers = [self.question objectForKey:@"choices"];
+            
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                [self.tableView reloadData];
+            }];
+        } else {
+            NSLog(@"Error updating question");
+        }
+    }];
 }
 
 
