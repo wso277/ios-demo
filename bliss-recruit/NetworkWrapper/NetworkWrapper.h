@@ -24,4 +24,5 @@ typedef void (^NetworkRequestCompletionHandler) (NSData * _Nullable result, BOOL
 
 -(void)fetchQuestionWithID:(NSString* _Nonnull)questionID andCompletionHandler:(_Nonnull NetworkRequestCompletionHandler) completionHandler;
 
+-(void)shareURL:(NSString*)urlString toEmail:(NSString* _Nonnull)email andCompletionHandler:(_Nonnull NetworkRequestCompletionHandler) completionHandler;
 @end

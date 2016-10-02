@@ -71,6 +71,60 @@
             </objects>
             <point key="canvasLocation" x="765.60000000000002" y="24.7376311844078"/>
         </scene>
+        <!--Share View Controller-->
+        <scene sceneID="Lg5-k1-wH9">
+            <objects>
+                <viewController id="R4y-ke-6us" customClass="ShareViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="LSr-HL-EbD"/>
+                        <viewControllerLayoutGuide type="bottom" id="6nT-sc-1Qf"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="QO0-py-Wqp">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JOr-rP-ILW">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="prd-t9-Fc5"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xgF-kW-B6d">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="46" id="jup-JP-lv5"/>
+                                </constraints>
+                                <state key="normal" title="Pick"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Write the email you wish to share or pick from your contact list" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EUC-pb-lvK">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="EUC-pb-lvK" firstAttribute="top" secondItem="JOr-rP-ILW" secondAttribute="bottom" constant="8" symbolic="YES" id="24w-l2-XKr"/>
+                            <constraint firstItem="6nT-sc-1Qf" firstAttribute="top" secondItem="EUC-pb-lvK" secondAttribute="bottom" constant="322" id="6Oj-tq-yiv"/>
+                            <constraint firstItem="JOr-rP-ILW" firstAttribute="leading" secondItem="EUC-pb-lvK" secondAttribute="leading" id="bfT-PU-YR1"/>
+                            <constraint firstItem="JOr-rP-ILW" firstAttribute="top" secondItem="LSr-HL-EbD" secondAttribute="bottom" constant="42" id="cV2-bR-VmJ"/>
+                            <constraint firstAttribute="trailing" secondItem="xgF-kW-B6d" secondAttribute="trailing" id="cvn-hn-K9y"/>
+                            <constraint firstItem="xgF-kW-B6d" firstAttribute="leading" secondItem="JOr-rP-ILW" secondAttribute="trailing" constant="18" id="e9t-UO-dKm"/>
+                            <constraint firstItem="JOr-rP-ILW" firstAttribute="top" secondItem="xgF-kW-B6d" secondAttribute="top" id="hEQ-rE-qXC"/>
+                            <constraint firstItem="JOr-rP-ILW" firstAttribute="leading" secondItem="QO0-py-Wqp" secondAttribute="leadingMargin" id="hXM-wv-IeK"/>
+                            <constraint firstItem="EUC-pb-lvK" firstAttribute="trailing" secondItem="QO0-py-Wqp" secondAttribute="trailingMargin" id="vG3-co-YbO"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="pickButton" destination="xgF-kW-B6d" id="8GU-e5-Ozu"/>
+                        <outlet property="textfield" destination="JOr-rP-ILW" id="91E-3x-FwC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jAb-7s-E8i" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1613.5999999999999" y="26.53673163418291"/>
+        </scene>
         <!--Root View Controller-->
         <scene sceneID="b7M-ag-T2P">
             <objects>
@@ -118,9 +172,16 @@
                             <outlet property="delegate" destination="0vK-gf-ts1" id="hRS-rs-o10"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="6Ep-b2-FFk"/>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="6Ep-b2-FFk">
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="iPC-p5-WA9">
+                            <connections>
+                                <segue destination="R4y-ke-6us" kind="show" identifier="shareSegue" id="NGs-JM-oRN"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="searchBar" destination="WEK-oi-1dV" id="s5V-Wp-mEe"/>
+                        <outlet property="shareButton" destination="iPC-p5-WA9" id="Qzj-bS-ykX"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LHw-o2-V1A" userLabel="First Responder" sceneMemberID="firstResponder"/>

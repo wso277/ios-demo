@@ -163,4 +163,40 @@ static dispatch_once_t sharedInstanceToken;
     }] resume];
 }
 
+-(void)shareURL:(NSString*)urlString toEmail:(NSString*)email andCompletionHandler:(_Nonnull NetworkRequestCompletionHandler) completionHandler
+{
+    NSString *urlStringEncoded =[NSString stringWithFormat:@"%@share?destination_email=%@&content_url=%@", self.baseUrl, [email stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet alphanumericCharacterSet]], [urlString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet alphanumericCharacterSet]]];
+    
+    NSURL *url = [NSURL URLWithString:urlStringEncoded];
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    
+    [request setHTTPMethod:@"POST"];
+    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request addValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    
+    [[session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        
+        if (error) {
+            completionHandler(data, NO, error);
+        } else {
+            switch ([(NSHTTPURLResponse*)response statusCode]) {
+                case 200:
+                    
+                    completionHandler(data, YES, nil);
+                    break;
+                    
+                case 400:
+                    
+                    completionHandler(data, NO, error);
+                default:
+                    completionHandler(data, NO, error);
+                    break;
+            }
+        }
+    }] resume];
+}
+
 @end

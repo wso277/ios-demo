@@ -10,6 +10,7 @@
 		9B3CA2D71DA1580B00A850DE /* DetailHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B3CA2D61DA1580B00A850DE /* DetailHeaderCell.m */; };
 		9B3CA2DA1DA1583800A850DE /* DetailAnswerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B3CA2D91DA1583800A850DE /* DetailAnswerCell.m */; };
 		9B3CA2DF1DA1715700A850DE /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B3CA2DE1DA1715700A850DE /* Reachability.m */; };
+		9B3CA2E31DA1824F00A850DE /* ShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B3CA2E21DA1824F00A850DE /* ShareViewController.m */; };
 		9BA981D01D9EE5D6006A9E0F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BA981CF1D9EE5D6006A9E0F /* main.m */; };
 		9BA981D31D9EE5D6006A9E0F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BA981D21D9EE5D6006A9E0F /* AppDelegate.m */; };
 		9BA981D61D9EE5D6006A9E0F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BA981D51D9EE5D6006A9E0F /* ViewController.m */; };
@@ -30,6 +31,8 @@
 		9B3CA2D91DA1583800A850DE /* DetailAnswerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DetailAnswerCell.m; path = DetailViewController/DetailAnswerCell.m; sourceTree = "<group>"; };
 		9B3CA2DD1DA1715700A850DE /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = Vendor/Reachibility/Reachability.h; sourceTree = "<group>"; };
 		9B3CA2DE1DA1715700A850DE /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = Vendor/Reachibility/Reachability.m; sourceTree = "<group>"; };
+		9B3CA2E11DA1824F00A850DE /* ShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShareViewController.h; path = SearchViewController/ShareViewController.h; sourceTree = "<group>"; };
+		9B3CA2E21DA1824F00A850DE /* ShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShareViewController.m; path = SearchViewController/ShareViewController.m; sourceTree = "<group>"; };
 		9BA981CB1D9EE5D6006A9E0F /* bliss-recruit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "bliss-recruit.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BA981CF1D9EE5D6006A9E0F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		9BA981D11D9EE5D6006A9E0F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -79,6 +82,15 @@
 			name = Reachibility;
 			sourceTree = "<group>";
 		};
+		9B3CA2E01DA181C500A850DE /* SearchViewController */ = {
+			isa = PBXGroup;
+			children = (
+				9B3CA2E11DA1824F00A850DE /* ShareViewController.h */,
+				9B3CA2E21DA1824F00A850DE /* ShareViewController.m */,
+			);
+			name = SearchViewController;
+			sourceTree = "<group>";
+		};
 		9BA981C21D9EE5D6006A9E0F = {
 			isa = PBXGroup;
 			children = (
@@ -98,6 +110,7 @@
 		9BA981CD1D9EE5D6006A9E0F /* bliss-recruit */ = {
 			isa = PBXGroup;
 			children = (
+				9B3CA2E01DA181C500A850DE /* SearchViewController */,
 				9B3CA2DB1DA170B300A850DE /* Vendor */,
 				9BD8CFD81DA1537500430EEE /* DetailViewController */,
 				9BA981EC1D9F0720006A9E0F /* ListViewController */,
@@ -239,6 +252,7 @@
 				9BA981D31D9EE5D6006A9E0F /* AppDelegate.m in Sources */,
 				9BA981F21D9F155D006A9E0F /* ListTableViewCell.m in Sources */,
 				9BA981D01D9EE5D6006A9E0F /* main.m in Sources */,
+				9B3CA2E31DA1824F00A850DE /* ShareViewController.m in Sources */,
 				9BA981EF1D9F0749006A9E0F /* ListTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

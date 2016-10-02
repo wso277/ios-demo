@@ -10,6 +10,7 @@
 #import "NetworkWrapper.h"
 #import "ListTableViewCell.h"
 #import "DetailTableViewController.h"
+#import "ShareViewController.h"
 
 @interface ListTableViewController ()
 
@@ -85,7 +86,15 @@
         }
         
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            
             [self.tableView reloadData];
+            
+            if (self.currentFilter && ![self.currentFilter isEqualToString:@""]) {
+                [self.shareButton setEnabled:YES];
+            } else {
+                [self.shareButton setEnabled:NO];
+            }
+            
         }];
     }];
 }
@@ -105,11 +114,6 @@
 -(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
 {
     [self.searchBar setShowsCancelButton:YES];
-}
-
--(void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
-{
-    
 }
 
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
@@ -202,12 +206,20 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    DetailTableViewController *vc = [segue destinationViewController];
+    if ([segue.identifier isEqualToString:@"shareSegue"]) {
+        
+        ShareViewController *vc = (ShareViewController*)[segue destinationViewController];
+        vc.filter = self.currentFilter;
+        
+    } else {
+        DetailTableViewController *vc = [segue destinationViewController];
+        
+        NSDictionary *question = ((ListTableViewCell*)sender).question;
+        
+        vc.question = [[NSMutableDictionary alloc] initWithDictionary:question];
+        vc.questionID = [question objectForKey:@"id"];
+    }
     
-    NSDictionary *question = ((ListTableViewCell*)sender).question;
-    
-    vc.question = [[NSMutableDictionary alloc] initWithDictionary:question];
-    vc.questionID = [question objectForKey:@"id"];
 }
 
 /*

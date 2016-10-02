@@ -14,5 +14,6 @@
 @property(nonatomic, strong)    NSString* currentFilter;
 @property(nonatomic, strong)    NSArray* questions;
 @property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *shareButton;
 
 @end
