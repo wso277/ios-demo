@@ -191,7 +191,7 @@
             </objects>
             <point key="canvasLocation" x="983" y="743"/>
         </scene>
-        <!--Detail Table View Controller-->
+        <!--Title-->
         <scene sceneID="hXO-cU-5fc">
             <objects>
                 <tableViewController storyboardIdentifier="detailViewController" id="fj8-iT-Ppq" customClass="DetailTableViewController" sceneMemberID="viewController">
@@ -303,6 +303,13 @@
                             <outlet property="delegate" destination="fj8-iT-Ppq" id="iSy-p0-PPt"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Title" id="m8g-bu-gU7">
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="Qek-1W-ZYc">
+                            <connections>
+                                <segue destination="R4y-ke-6us" kind="show" id="FWb-hi-WAM"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dBX-Xu-WJq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -325,4 +332,7 @@
             <point key="canvasLocation" x="33" y="743"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="FWb-hi-WAM"/>
+    </inferredMetricsTieBreakers>
 </document>

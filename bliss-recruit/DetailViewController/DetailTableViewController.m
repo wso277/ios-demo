@@ -8,6 +8,7 @@
 
 #import "DetailTableViewController.h"
 #import "NetworkWrapper.h"
+#import "ShareViewController.h"
 
 @interface DetailTableViewController ()
 
@@ -175,6 +176,12 @@
             NSLog(@"Error updating question");
         }
     }];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    ShareViewController *vc = (ShareViewController*)[segue destinationViewController];
+    vc.questionID = (int)[self.question objectForKey:@"id"];
 }
 
 
