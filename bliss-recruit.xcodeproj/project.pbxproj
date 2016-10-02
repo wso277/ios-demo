@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9B3CA2D71DA1580B00A850DE /* DetailHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B3CA2D61DA1580B00A850DE /* DetailHeaderCell.m */; };
+		9B3CA2DA1DA1583800A850DE /* DetailAnswerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B3CA2D91DA1583800A850DE /* DetailAnswerCell.m */; };
 		9BA981D01D9EE5D6006A9E0F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BA981CF1D9EE5D6006A9E0F /* main.m */; };
 		9BA981D31D9EE5D6006A9E0F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BA981D21D9EE5D6006A9E0F /* AppDelegate.m */; };
 		9BA981D61D9EE5D6006A9E0F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BA981D51D9EE5D6006A9E0F /* ViewController.m */; };
@@ -17,9 +19,14 @@
 		9BA981EB1D9EEA9D006A9E0F /* NetworkWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BA981EA1D9EEA9D006A9E0F /* NetworkWrapper.m */; };
 		9BA981EF1D9F0749006A9E0F /* ListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BA981EE1D9F0749006A9E0F /* ListTableViewController.m */; };
 		9BA981F21D9F155D006A9E0F /* ListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BA981F11D9F155D006A9E0F /* ListTableViewCell.m */; };
+		9BD8CFDB1DA1539300430EEE /* DetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8CFDA1DA1539300430EEE /* DetailTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9B3CA2D51DA1580B00A850DE /* DetailHeaderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DetailHeaderCell.h; path = DetailViewController/DetailHeaderCell.h; sourceTree = "<group>"; };
+		9B3CA2D61DA1580B00A850DE /* DetailHeaderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DetailHeaderCell.m; path = DetailViewController/DetailHeaderCell.m; sourceTree = "<group>"; };
+		9B3CA2D81DA1583800A850DE /* DetailAnswerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DetailAnswerCell.h; path = DetailViewController/DetailAnswerCell.h; sourceTree = "<group>"; };
+		9B3CA2D91DA1583800A850DE /* DetailAnswerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DetailAnswerCell.m; path = DetailViewController/DetailAnswerCell.m; sourceTree = "<group>"; };
 		9BA981CB1D9EE5D6006A9E0F /* bliss-recruit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "bliss-recruit.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BA981CF1D9EE5D6006A9E0F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		9BA981D11D9EE5D6006A9E0F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -37,6 +44,8 @@
 		9BA981EE1D9F0749006A9E0F /* ListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ListTableViewController.m; path = ListViewController/ListTableViewController.m; sourceTree = "<group>"; };
 		9BA981F01D9F155D006A9E0F /* ListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ListTableViewCell.h; path = ListViewController/ListTableViewCell.h; sourceTree = "<group>"; };
 		9BA981F11D9F155D006A9E0F /* ListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ListTableViewCell.m; path = ListViewController/ListTableViewCell.m; sourceTree = "<group>"; };
+		9BD8CFD91DA1539300430EEE /* DetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DetailTableViewController.h; path = DetailViewController/DetailTableViewController.h; sourceTree = "<group>"; };
+		9BD8CFDA1DA1539300430EEE /* DetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DetailTableViewController.m; path = DetailViewController/DetailTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +78,7 @@
 		9BA981CD1D9EE5D6006A9E0F /* bliss-recruit */ = {
 			isa = PBXGroup;
 			children = (
+				9BD8CFD81DA1537500430EEE /* DetailViewController */,
 				9BA981EC1D9F0720006A9E0F /* ListViewController */,
 				9BA981E81D9EEA3F006A9E0F /* NetworkWrapper */,
 				9BA981D11D9EE5D6006A9E0F /* AppDelegate.h */,
@@ -111,6 +121,19 @@
 				9BA981F11D9F155D006A9E0F /* ListTableViewCell.m */,
 			);
 			name = ListViewController;
+			sourceTree = "<group>";
+		};
+		9BD8CFD81DA1537500430EEE /* DetailViewController */ = {
+			isa = PBXGroup;
+			children = (
+				9BD8CFD91DA1539300430EEE /* DetailTableViewController.h */,
+				9BD8CFDA1DA1539300430EEE /* DetailTableViewController.m */,
+				9B3CA2D51DA1580B00A850DE /* DetailHeaderCell.h */,
+				9B3CA2D61DA1580B00A850DE /* DetailHeaderCell.m */,
+				9B3CA2D81DA1583800A850DE /* DetailAnswerCell.h */,
+				9B3CA2D91DA1583800A850DE /* DetailAnswerCell.m */,
+			);
+			name = DetailViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -185,8 +208,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B3CA2DA1DA1583800A850DE /* DetailAnswerCell.m in Sources */,
+				9BD8CFDB1DA1539300430EEE /* DetailTableViewController.m in Sources */,
 				9BA981DC1D9EE5D6006A9E0F /* bliss_recruit.xcdatamodeld in Sources */,
 				9BA981D61D9EE5D6006A9E0F /* ViewController.m in Sources */,
+				9B3CA2D71DA1580B00A850DE /* DetailHeaderCell.m in Sources */,
 				9BA981EB1D9EEA9D006A9E0F /* NetworkWrapper.m in Sources */,
 				9BA981D31D9EE5D6006A9E0F /* AppDelegate.m in Sources */,
 				9BA981F21D9F155D006A9E0F /* ListTableViewCell.m in Sources */,

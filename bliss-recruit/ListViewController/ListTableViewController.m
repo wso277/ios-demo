@@ -9,6 +9,7 @@
 #import "ListTableViewController.h"
 #import "NetworkWrapper.h"
 #import "ListTableViewCell.h"
+#import "DetailTableViewController.h"
 
 @interface ListTableViewController ()
 
@@ -156,6 +157,20 @@
     [self performListRequest];
 }
 
+-(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
+{
+    return YES;
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    DetailTableViewController *vc = [segue destinationViewController];
+    
+    NSDictionary *question = ((ListTableViewCell*)sender).question;
+    
+    vc.question = question;
+    vc.questionID = [question objectForKey:@"id"];
+}
 
 /*
 // Override to support conditional editing of the table view.
