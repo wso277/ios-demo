@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ListTableViewController : UITableViewController
+@interface ListTableViewController : UITableViewController <UISearchBarDelegate>
 
 @property(nonatomic) int currentOffset, limit;
 @property(nonatomic, strong)    NSString* currentFilter;

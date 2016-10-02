@@ -36,8 +36,10 @@
     
     self.title = @"Questions";
     
-    self.limit = 5;
+    self.limit = 10;
     self.currentOffset = 0;
+    
+    self.searchBar.delegate = self;
     
     [self performListRequest];
 }
@@ -54,6 +56,10 @@
             self.searchBar.text = self.currentFilter;
             //TODO Search
         }
+        
+        [self.searchBar setShowsCancelButton:YES];
+    } else {
+        [self.searchBar setShowsCancelButton:NO];
     }
 }
 
@@ -82,6 +88,38 @@
             [self.tableView reloadData];
         }];
     }];
+}
+
+-(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+{
+    [self.searchBar setShowsCancelButton:NO];
+    self.searchBar.text = @"";
+    self.currentFilter = @"";
+    [self.searchBar resignFirstResponder];
+    self.currentOffset = 0;
+    self.questions = @[];
+    [self.tableView reloadData];
+    [self performListRequest];
+}
+
+-(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
+{
+    [self.searchBar setShowsCancelButton:YES];
+}
+
+-(void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
+{
+    
+}
+
+-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    self.currentFilter = self.searchBar.text;
+    [self.searchBar resignFirstResponder];
+    self.currentOffset = 0;
+    self.questions = @[];
+    [self.tableView reloadData];
+    [self performListRequest];
 }
 
 - (void)didReceiveMemoryWarning {
