@@ -22,5 +22,6 @@ typedef void (^NetworkRequestCompletionHandler) (NSData * _Nullable result, BOOL
 
 -(void)updateQuestion:( NSMutableDictionary* _Nonnull )question withCompletionHandler:(_Nonnull NetworkRequestCompletionHandler)completionHandler;
 
+-(void)fetchQuestionWithID:(NSString* _Nonnull)questionID andCompletionHandler:(_Nonnull NetworkRequestCompletionHandler) completionHandler;
 
 @end

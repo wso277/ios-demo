@@ -57,6 +57,40 @@ static dispatch_once_t sharedInstanceToken;
     }] resume];
 }
 
+-(void)fetchQuestionWithID:(NSString*)questionID andCompletionHandler:(_Nonnull NetworkRequestCompletionHandler) completionHandler
+{
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@questions/%@", self.baseUrl, questionID]];
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    
+    [request setHTTPMethod:@"GET"];
+    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request addValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    
+    [[session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        
+        if (error) {
+            completionHandler(data, NO, error);
+        } else {
+            switch ([(NSHTTPURLResponse*)response statusCode]) {
+                case 200:
+                    
+                    completionHandler(data, YES, nil);
+                    break;
+                    
+                case 503:
+                    
+                    completionHandler(data, NO, error);
+                default:
+                    completionHandler(data, NO, error);
+                    break;
+            }
+        }
+    }] resume];
+}
+
 -(void)listQuestionsWithLimit:(int)limit withOffset:(int)offset andFilter:( NSString* _Nullable )filter withCompletionHandler:(_Nonnull NetworkRequestCompletionHandler)completionHandler
 {
     NSURL *url;

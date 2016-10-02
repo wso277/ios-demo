@@ -103,7 +103,7 @@
         <!--Detail Table View Controller-->
         <scene sceneID="hXO-cU-5fc">
             <objects>
-                <tableViewController id="fj8-iT-Ppq" customClass="DetailTableViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="detailViewController" id="fj8-iT-Ppq" customClass="DetailTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="lOU-Eu-vgE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

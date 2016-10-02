@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "ListTableViewController.h"
+#import "DetailTableViewController.h"
 
 @interface AppDelegate ()
 
@@ -68,6 +69,31 @@
     if ([url.absoluteString containsString:@"blissrecruitment"]) {
         
         if ([url.absoluteString containsString:@"question_id"]) {
+            
+            NSURLComponents *urlComponents = [NSURLComponents componentsWithURL:url
+                                                        resolvingAgainstBaseURL:NO];
+            NSArray *queryItems = urlComponents.queryItems;
+            NSString *questionID = [self valueForKey:@"question_id"
+                                  fromQueryItems:queryItems];
+            
+            if (questionID && ![questionID isEqualToString:@""]) {
+                
+                UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                UINavigationController *navController = [sb instantiateViewControllerWithIdentifier:@"ListNavigationController"];
+                
+                DetailTableViewController *vc = (DetailTableViewController*)[sb instantiateViewControllerWithIdentifier:@"detailViewController"];
+                
+                vc.questionID = questionID;
+                
+                ((ListTableViewController*)(navController.topViewController)).title = @"Questions";
+                
+                self.window.rootViewController = navController;
+                
+                [navController pushViewController:vc animated:NO];
+                
+            }
+            
+            
             
         } else {
             UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];

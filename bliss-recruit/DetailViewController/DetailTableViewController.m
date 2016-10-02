@@ -24,6 +24,7 @@
         self.answers = [self.question objectForKey:@"choices"];
     } else {
         self.answers = [[NSArray alloc] init];
+        [self fetchQuestion];
     }
     
     // Uncomment the following line to preserve selection between presentations.
@@ -31,6 +32,31 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+-(void)fetchQuestion
+{
+    [[NetworkWrapper sharedInstance] fetchQuestionWithID:self.questionID andCompletionHandler:^(NSData * _Nullable result, BOOL success, NSError * _Nullable error) {
+        
+        if (success) {
+            
+            NSMutableDictionary* json = [NSJSONSerialization JSONObjectWithData:result
+                                                                        options:kNilOptions
+                                                                          error:nil];
+            
+            self.question = [[NSMutableDictionary alloc] initWithDictionary:json];
+            
+            self.answers = [self.question objectForKey:@"choices"];
+            
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                [self.tableView reloadData];
+            }];
+
+            
+        } else {
+            NSLog(@"[fetchQuestion]: error fetching question");
+        }
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
