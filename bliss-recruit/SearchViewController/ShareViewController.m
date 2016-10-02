@@ -21,9 +21,41 @@
     
     self.navigationItem.title = @"Share";
     
-    UIBarButtonItem *sendButton = [[UIBarButtonItem alloc] initWithTitle:@"Send" style:UIBarButtonItemStyleDone target:self action:@selector(sendEmail:)];
+    self.sendButton = [[UIBarButtonItem alloc] initWithTitle:@"Send" style:UIBarButtonItemStyleDone target:self action:@selector(sendEmail:)];
     
-    self.navigationItem.rightBarButtonItem = sendButton;
+    self.navigationItem.rightBarButtonItem = self.sendButton;
+    
+    [self.textfield addTarget:self
+                  action:@selector(textFieldDidChange:)
+        forControlEvents:UIControlEventEditingChanged];
+    
+    self.sendButton.enabled = NO;
+    
+}
+
+-(void)textFieldDidChange:(id)sender
+{
+    if ([self checkString:self.textfield.text]) {
+        self.sendButton.enabled = YES;
+    } else {
+        self.sendButton.enabled = NO;
+    }
+}
+
+- (BOOL)checkString:(NSString *)string {
+    
+    NSString *const expression = @".+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2}[A-Za-z]*"; //insert yours
+    NSError *error = nil;
+    
+    NSRegularExpression * const regExpr =
+    [NSRegularExpression regularExpressionWithPattern:expression
+                                              options:NSRegularExpressionCaseInsensitive
+                                                error:&error];
+    
+    NSTextCheckingResult * const matchResult = [regExpr firstMatchInString:string
+                                                                   options:0 range:NSMakeRange(0, [string length])];
+    
+    return matchResult ? YES : NO; 
 }
 
 -(void)sendEmail:(id)sender
@@ -72,11 +104,39 @@
     
     
 }
+- (IBAction)pickButtonPressed:(id)sender {
+    
+    CNContactPickerViewController *picker = [[CNContactPickerViewController alloc] init];
+    picker.modalPresentationStyle = UIModalPresentationFormSheet;
+    picker.delegate = self;
+    picker.predicateForEnablingContact = [NSPredicate predicateWithFormat:@"emailAddresses.@count > 0"];
+    picker.displayedPropertyKeys = @[CNContactEmailAddressesKey];
+    
+    [self presentViewController:picker animated:YES completion:nil];
+}
+
+-(void)contactPicker:(CNContactPickerViewController *)picker didSelectContact:(CNContact *)contact
+{
+    
+    CNLabeledValue *emailValue = contact.emailAddresses.firstObject;
+    NSString *emailString = emailValue.value;
+    
+    self.textfield.text = emailString;
+    
+    [self performSelector:@selector(textFieldDidChange:) withObject:nil];
+}
+
+-(void)contactPickerDidCancel:(CNContactPickerViewController *)picker
+{
+    NSLog(@"[contactPickerCancel]: cancel");
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
 
 /*
 #pragma mark - Navigation
