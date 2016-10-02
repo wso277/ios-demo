@@ -9,9 +9,15 @@
 #import "AppDelegate.h"
 #import "ListTableViewController.h"
 #import "DetailTableViewController.h"
+#import "Reachability.h"
 
 @interface AppDelegate ()
+{
+    Reachability* internetReachable;
+}
 
+@property (nonatomic, strong) UIViewController *noInternetView;
+@property (nonatomic) BOOL showingNoInternetView;
 @end
 
 @implementation AppDelegate
@@ -19,7 +25,34 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
     return YES;
+}
+
+-(void)reachabilityChanged:(id)sender
+{
+    Reachability *reachability = [Reachability reachabilityForInternetConnection];
+    NetworkStatus networkStatus = [reachability currentReachabilityStatus];
+    
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        if (networkStatus != NotReachable && self.showingNoInternetView) {
+            
+            self.showingNoInternetView = NO;
+            [self.noInternetView dismissViewControllerAnimated:YES completion:nil];
+            
+        } else {
+            if (self.noInternetView == nil) {
+                UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                self.noInternetView = [sb instantiateViewControllerWithIdentifier:@"noInternetView"];
+                
+            }
+            self.showingNoInternetView = YES;
+            
+            [self.window.rootViewController.presentedViewController presentViewController:self.noInternetView animated:YES completion:nil];
+        }
+    }];
+    
+
 }
 
 
@@ -42,12 +75,28 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    
+    // Allocate a reachability object
+    //    Reachability* reach = [Reachability reachabilityWithHostname:@"www.google.com"];
+    
+    self.showingNoInternetView = NO;
+    
+    // Here we set up a NSNotification observer. The Reachability that caused the notification
+    // is passed in the object parameter
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(reachabilityChanged:)
+                                                 name:kReachabilityChangedNotification
+                                               object:nil];
+    
+    internetReachable = [Reachability reachabilityForInternetConnection];
+    [internetReachable startNotifier];
 }
 
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     // Saves changes in the application's managed object context before the application terminates.
+    
     [self saveContext];
 }
 
