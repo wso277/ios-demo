@@ -38,6 +38,8 @@
                                                  name:kReachabilityChangedNotification
                                                object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityChanged:) name:@"showNoInternetScreen" object:nil];
+    
     internetReachable = [Reachability reachabilityForInternetConnection];
     [internetReachable startNotifier];
     

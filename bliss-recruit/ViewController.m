@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "NetworkWrapper.h"
+#import "Reachability.h"
 
 @interface ViewController ()
 
@@ -24,33 +25,41 @@
 
 -(void)performHealthCheckRequest
 {
-    [[NetworkWrapper sharedInstance] checkHealthStatusWithCompletionHandler:^(NSData * _Nullable result, BOOL success, NSError * _Nullable error) {
-       
-        NSLog(@"%@", [NSNumber numberWithBool:success]);
-        
-        NSDictionary* json = [NSJSONSerialization JSONObjectWithData:result
-                                                             options:kNilOptions
-                                                               error:nil];
-        
-        NSLog(@"%@", json);
-        
-        if (success) {
-            UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-            UINavigationController *navController = [sb instantiateViewControllerWithIdentifier:@"ListNavigationController"];
+    Reachability *reachability = [Reachability reachabilityForInternetConnection];
+    NetworkStatus networkStatus = [reachability currentReachabilityStatus];
+    
+    if (networkStatus != NotReachable) {
+        [[NetworkWrapper sharedInstance] checkHealthStatusWithCompletionHandler:^(NSData * _Nullable result, BOOL success, NSError * _Nullable error) {
             
-            [self presentViewController:navController animated:YES completion:nil];
+            NSDictionary* json = [NSJSONSerialization JSONObjectWithData:result
+                                                                 options:kNilOptions
+                                                                   error:nil];
             
-//            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-//                [self.loadingSpinner stopAnimating];
-//                [self.retryButton setHidden:NO];
-//            }];
-        } else {
-            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                [self.loadingSpinner stopAnimating];
-                [self.retryButton setHidden:NO];
-            }];
-        }
-    }];
+            NSLog(@"%@", json);
+            
+            if (success) {
+                UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                UINavigationController *navController = [sb instantiateViewControllerWithIdentifier:@"ListNavigationController"];
+                
+                [self presentViewController:navController animated:YES completion:nil];
+                
+                //            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                //                [self.loadingSpinner stopAnimating];
+                //                [self.retryButton setHidden:NO];
+                //            }];
+            } else {
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    [self.loadingSpinner stopAnimating];
+                    [self.retryButton setHidden:NO];
+                }];
+            }
+        }];
+    } else {
+        [self.loadingSpinner stopAnimating];
+        [self.retryButton setHidden:NO];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"showNoInternetScreen" object:nil];
+    }
+    
 }
 
 - (IBAction)retryButtonPressed:(id)sender {
