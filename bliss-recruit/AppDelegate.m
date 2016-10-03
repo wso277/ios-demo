@@ -26,6 +26,21 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
+    self.showingNoInternetView = NO;
+    
+    // Allocate a reachability object
+    //    Reachability* reach = [Reachability reachabilityWithHostname:@"www.google.com"];
+    
+    // Here we set up a NSNotification observer. The Reachability that caused the notification
+    // is passed in the object parameter
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(reachabilityChanged:)
+                                                 name:kReachabilityChangedNotification
+                                               object:nil];
+    
+    internetReachable = [Reachability reachabilityForInternetConnection];
+    [internetReachable startNotifier];
+    
     return YES;
 }
 
@@ -48,11 +63,36 @@
             }
             self.showingNoInternetView = YES;
             
-            [self.window.rootViewController.presentedViewController presentViewController:self.noInternetView animated:YES completion:nil];
+            [[self visibleViewController:self.window.rootViewController] presentViewController:self.noInternetView animated:YES completion:nil];
         }
     }];
-    
 
+}
+
+- (UIViewController *)visibleViewController:(UIViewController *)rootViewController
+{
+    if (rootViewController.presentedViewController == nil)
+    {
+        return rootViewController;
+    }
+    if ([rootViewController.presentedViewController isKindOfClass:[UINavigationController class]])
+    {
+        UINavigationController *navigationController = (UINavigationController *)rootViewController.presentedViewController;
+        UIViewController *lastViewController = [[navigationController viewControllers] lastObject];
+        
+        return [self visibleViewController:lastViewController];
+    }
+    if ([rootViewController.presentedViewController isKindOfClass:[UITabBarController class]])
+    {
+        UITabBarController *tabBarController = (UITabBarController *)rootViewController.presentedViewController;
+        UIViewController *selectedViewController = tabBarController.selectedViewController;
+        
+        return [self visibleViewController:selectedViewController];
+    }
+    
+    UIViewController *presentedViewController = (UIViewController *)rootViewController.presentedViewController;
+    
+    return [self visibleViewController:presentedViewController];
 }
 
 
@@ -76,20 +116,7 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     
-    // Allocate a reachability object
-    //    Reachability* reach = [Reachability reachabilityWithHostname:@"www.google.com"];
-    
-    self.showingNoInternetView = NO;
-    
-    // Here we set up a NSNotification observer. The Reachability that caused the notification
-    // is passed in the object parameter
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(reachabilityChanged:)
-                                                 name:kReachabilityChangedNotification
-                                               object:nil];
-    
-    internetReachable = [Reachability reachabilityForInternetConnection];
-    [internetReachable startNotifier];
+
 }
 
 
