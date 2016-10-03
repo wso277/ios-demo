@@ -42,6 +42,22 @@
     
     self.searchBar.delegate = self;
     
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    refreshControl.backgroundColor = [UIColor whiteColor];
+    refreshControl.tintColor = [UIColor grayColor];
+    [refreshControl addTarget:self
+                            action:@selector(reloadQuestions)
+                  forControlEvents:UIControlEventValueChanged];
+    
+    self.tableView.refreshControl = refreshControl;
+    
+    [self performListRequest];
+}
+
+-(void)reloadQuestions
+{
+    self.questions = @[];
+    self.currentOffset = 0;
     [self performListRequest];
 }
 
@@ -88,6 +104,7 @@
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             
             [self.tableView reloadData];
+            [self.refreshControl endRefreshing];
             
             if (self.currentFilter && ![self.currentFilter isEqualToString:@""]) {
                 [self.shareButton setEnabled:YES];
@@ -179,25 +196,27 @@
     
     // Configure the cell...
     
-    NSDictionary *question = [self.questions objectAtIndex:indexPath.row];
-    
-    if (question != nil) {
-        cell.questionLabel.text = [question valueForKey:@"question"];
+    if (indexPath.row < [self.questions count]) {
+        NSDictionary *question = [self.questions objectAtIndex:indexPath.row];
         
-        NSDateFormatter *dateformate=[[NSDateFormatter alloc]init];
-        [dateformate setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.zzzZ"];
-        
-        NSDate *date = [dateformate dateFromString:[question valueForKey:@"published_at"]];
-        
-        [dateformate setDateFormat:@"dd/MM/yyyy HH:mm"];
-        
-        cell.dateLabel.text = [dateformate stringFromDate:date];
-        //        NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[question valueForKey:@"thumb_url"]]];
-        //        cell.imageView.image = [UIImage imageWithData:imageData];
-        cell.question = question;
-        //cell.imageView.image = [UIImage imageNamed:@"question-block"];
-        [self fetchImageWithCell:cell andQuestion:question];
-        
+        if (question != nil) {
+            cell.questionLabel.text = [question valueForKey:@"question"];
+            
+            NSDateFormatter *dateformate=[[NSDateFormatter alloc]init];
+            [dateformate setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.zzzZ"];
+            
+            NSDate *date = [dateformate dateFromString:[question valueForKey:@"published_at"]];
+            
+            [dateformate setDateFormat:@"dd/MM/yyyy HH:mm"];
+            
+            cell.dateLabel.text = [dateformate stringFromDate:date];
+            //        NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[question valueForKey:@"thumb_url"]]];
+            //        cell.imageView.image = [UIImage imageWithData:imageData];
+            cell.question = question;
+            //cell.imageView.image = [UIImage imageNamed:@"question-block"];
+            [self fetchImageWithCell:cell andQuestion:question];
+            
+        }
     }
     
     return cell;
