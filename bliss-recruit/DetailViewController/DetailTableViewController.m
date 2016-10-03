@@ -91,7 +91,15 @@
     DetailHeaderCell *cell = (DetailHeaderCell*)[tableView dequeueReusableCellWithIdentifier:@"questionCell"];
     
     cell.questionLabel.text = [self.question objectForKey:@"question"];
-    cell.dateLabel.text = [self.question objectForKey:@"published_at"];
+    
+    NSDateFormatter *dateformate=[[NSDateFormatter alloc]init];
+    [dateformate setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.zzzZ"];
+    
+    NSDate *date = [dateformate dateFromString:[self.question valueForKey:@"published_at"]];
+    
+    [dateformate setDateFormat:@"dd/MM/yyyy HH:mm"];
+    
+    cell.dateLabel.text = [dateformate stringFromDate:date];
     
     [self fetchImageWithCell:cell];
     
@@ -138,8 +146,9 @@
     return cell;
 }
 
--(void)voteButtonPressed:(NSInteger)index
+-(void)voteButtonPressed:(NSInteger)index andSpinner:(UIActivityIndicatorView *)spinner
 {
+    [spinner startAnimating];
     NSMutableArray *arr = [[NSMutableArray alloc] initWithArray:self.answers];
     
     long current = [((NSNumber*)[[self.answers objectAtIndex:index] objectForKey:@"votes"]) longValue];
@@ -175,6 +184,10 @@
         } else {
             NSLog(@"Error updating question");
         }
+        
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [spinner stopAnimating];
+        }];
     }];
 }
 

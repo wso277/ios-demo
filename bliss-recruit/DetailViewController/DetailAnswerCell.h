@@ -10,7 +10,7 @@
 
 @protocol AnswerCellDelegate <NSObject>
 
--(void)voteButtonPressed:(NSInteger)index;
+-(void)voteButtonPressed:(NSInteger)index andSpinner:(UIActivityIndicatorView*)spinner;
 
 @end
 
@@ -18,6 +18,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *answerLabel;
 @property (strong, nonatomic) IBOutlet UILabel *countLabel;
 @property (strong, nonatomic) IBOutlet UIButton *voteButton;
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *voteSpinner;
 
 @property (nonatomic) NSInteger choiceIndex;
 

@@ -103,7 +103,7 @@
 {
     [self.searchBar setShowsCancelButton:NO];
     self.searchBar.text = @"";
-    self.currentFilter = @"";
+    self.currentFilter = nil;
     [self.searchBar resignFirstResponder];
     self.currentOffset = 0;
     self.questions = @[];
@@ -183,7 +183,15 @@
     
     if (question != nil) {
         cell.textLabel.text = [question valueForKey:@"question"];
-        cell.detailTextLabel.text = [question valueForKey:@"published_at"];
+        
+        NSDateFormatter *dateformate=[[NSDateFormatter alloc]init];
+        [dateformate setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.zzzZ"];
+        
+        NSDate *date = [dateformate dateFromString:[question valueForKey:@"published_at"]];
+        
+        [dateformate setDateFormat:@"dd/MM/yyyy HH:mm"];
+        
+        cell.detailTextLabel.text = [dateformate stringFromDate:date];
 //        NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[question valueForKey:@"thumb_url"]]];
 //        cell.imageView.image = [UIImage imageWithData:imageData];
         cell.question = question;

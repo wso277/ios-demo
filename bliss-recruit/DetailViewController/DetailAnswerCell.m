@@ -24,6 +24,6 @@
 - (IBAction)voteButtonPressed:(id)sender {
     
     if (self.delegate != nil)
-        [self.delegate voteButtonPressed:self.choiceIndex];
+        [self.delegate voteButtonPressed:self.choiceIndex andSpinner:self.voteSpinner];
 }
 @end

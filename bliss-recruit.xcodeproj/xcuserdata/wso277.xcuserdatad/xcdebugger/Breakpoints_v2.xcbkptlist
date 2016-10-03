@@ -202,11 +202,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "bliss-recruit/ListViewController/ListTableViewController.m"
-            timestampString = "497124051.309264"
+            timestampString = "497211888.75998"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "187"
-            endingLineNumber = "187"
+            startingLineNumber = "195"
+            endingLineNumber = "195"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -314,11 +314,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "bliss-recruit/ListViewController/ListTableViewController.m"
-            timestampString = "497124051.309264"
+            timestampString = "497211888.75998"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "204"
-            endingLineNumber = "204"
+            startingLineNumber = "212"
+            endingLineNumber = "212"
             landmarkName = "-shouldPerformSegueWithIdentifier:sender:"
             landmarkType = "7">
          </BreakpointContent>
@@ -362,11 +362,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "bliss-recruit/DetailViewController/DetailTableViewController.m"
-            timestampString = "497127660.268839"
+            timestampString = "497212242.178781"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "129"
-            endingLineNumber = "129"
+            startingLineNumber = "137"
+            endingLineNumber = "137"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -378,11 +378,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "bliss-recruit/DetailViewController/DetailTableViewController.m"
-            timestampString = "497127660.268839"
+            timestampString = "497212242.178781"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "93"
-            endingLineNumber = "93"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
             landmarkName = "-tableView:viewForHeaderInSection:"
             landmarkType = "7">
          </BreakpointContent>
@@ -394,11 +394,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "bliss-recruit/DetailViewController/DetailTableViewController.m"
-            timestampString = "497127660.268839"
+            timestampString = "497212242.178781"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "103"
-            endingLineNumber = "103"
+            startingLineNumber = "111"
+            endingLineNumber = "111"
             landmarkName = "-fetchImageWithCell:"
             landmarkType = "7">
          </BreakpointContent>
@@ -410,11 +410,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "bliss-recruit/DetailViewController/DetailTableViewController.m"
-            timestampString = "497127660.268839"
+            timestampString = "497212242.178781"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "109"
-            endingLineNumber = "109"
+            startingLineNumber = "117"
+            endingLineNumber = "117"
             landmarkName = "-fetchImageWithCell:"
             landmarkType = "7">
          </BreakpointContent>
@@ -426,12 +426,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "bliss-recruit/DetailViewController/DetailTableViewController.m"
-            timestampString = "497127660.268839"
+            timestampString = "497212242.178781"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "144"
-            endingLineNumber = "144"
-            landmarkName = "-voteButtonPressed:"
+            startingLineNumber = "153"
+            endingLineNumber = "153"
+            landmarkName = "-voteButtonPressed:andSpinner:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -442,12 +442,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "bliss-recruit/DetailViewController/DetailTableViewController.m"
-            timestampString = "497127660.268839"
+            timestampString = "497212242.178781"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "154"
-            endingLineNumber = "154"
-            landmarkName = "-voteButtonPressed:"
+            startingLineNumber = "163"
+            endingLineNumber = "163"
+            landmarkName = "-voteButtonPressed:andSpinner:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -458,12 +458,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "bliss-recruit/DetailViewController/DetailTableViewController.m"
-            timestampString = "497127660.268839"
+            timestampString = "497212242.178781"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "172"
-            endingLineNumber = "172"
-            landmarkName = "-voteButtonPressed:"
+            startingLineNumber = "181"
+            endingLineNumber = "181"
+            landmarkName = "-voteButtonPressed:andSpinner:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -474,28 +474,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "bliss-recruit/DetailViewController/DetailTableViewController.m"
-            timestampString = "497127660.268839"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "155"
-            endingLineNumber = "155"
-            landmarkName = "-voteButtonPressed:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "bliss-recruit/DetailViewController/DetailTableViewController.m"
-            timestampString = "497127660.268839"
+            timestampString = "497212242.178781"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "164"
             endingLineNumber = "164"
-            landmarkName = "-voteButtonPressed:"
+            landmarkName = "-voteButtonPressed:andSpinner:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -506,12 +490,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "bliss-recruit/DetailViewController/DetailTableViewController.m"
-            timestampString = "497127660.268839"
+            timestampString = "497212242.178781"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "168"
-            endingLineNumber = "168"
-            landmarkName = "-voteButtonPressed:"
+            startingLineNumber = "173"
+            endingLineNumber = "173"
+            landmarkName = "-voteButtonPressed:andSpinner:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "bliss-recruit/DetailViewController/DetailTableViewController.m"
+            timestampString = "497212242.178781"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "177"
+            endingLineNumber = "177"
+            landmarkName = "-voteButtonPressed:andSpinner:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -720,6 +720,22 @@
             startingLineNumber = "95"
             endingLineNumber = "95"
             landmarkName = "-visibleViewController:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "bliss-recruit/ListViewController/ListTableViewController.m"
+            timestampString = "497211888.75998"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "192"
+            endingLineNumber = "192"
+            landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
