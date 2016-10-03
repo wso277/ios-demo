@@ -11,5 +11,8 @@
 @interface ListTableViewCell : UITableViewCell
 
 @property (nonatomic, strong)   NSDictionary* question;
+@property (strong, nonatomic) IBOutlet UIImageView *questionThumb;
+@property (strong, nonatomic) IBOutlet UILabel *questionLabel;
+@property (strong, nonatomic) IBOutlet UILabel *dateLabel;
 
 @end

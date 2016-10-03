@@ -150,24 +150,24 @@
     
     [[session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         
-        if (data && [cell.question valueForKey:@"id"] == [question valueForKey:@"id"]) {
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             
-//            dispatch_async(dispatch_get_main_queue(), ^{
-//                cell.imageView.image = [UIImage imageWithData:data];
-//            });
-            
-            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                cell.imageView.image = [UIImage imageWithData:data];
-            }];
-            
-        }
-        
+            if (data && [cell.question valueForKey:@"id"] == [question valueForKey:@"id"]) {
+                
+                //            dispatch_async(dispatch_get_main_queue(), ^{
+                //                cell.imageView.image = [UIImage imageWithData:data];
+                //            });
+                
+                cell.questionThumb.image = [[UIImage alloc] initWithData:data];
+                
+            }
+        }];
     }] resume];
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-
+    
     
     ListTableViewCell *cell = (ListTableViewCell*)[self.tableView dequeueReusableCellWithIdentifier:@"listCellIdentifier" forIndexPath:indexPath];
     
@@ -175,14 +175,14 @@
         cell = [[ListTableViewCell alloc] init];
     }
     
-//    ListTableViewCell *cell = (ListTableViewCell*)([[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"listCellIdentifier"]);
+    //    ListTableViewCell *cell = (ListTableViewCell*)([[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"listCellIdentifier"]);
     
     // Configure the cell...
     
     NSDictionary *question = [self.questions objectAtIndex:indexPath.row];
     
     if (question != nil) {
-        cell.textLabel.text = [question valueForKey:@"question"];
+        cell.questionLabel.text = [question valueForKey:@"question"];
         
         NSDateFormatter *dateformate=[[NSDateFormatter alloc]init];
         [dateformate setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.zzzZ"];
@@ -191,10 +191,11 @@
         
         [dateformate setDateFormat:@"dd/MM/yyyy HH:mm"];
         
-        cell.detailTextLabel.text = [dateformate stringFromDate:date];
-//        NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[question valueForKey:@"thumb_url"]]];
-//        cell.imageView.image = [UIImage imageWithData:imageData];
+        cell.dateLabel.text = [dateformate stringFromDate:date];
+        //        NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[question valueForKey:@"thumb_url"]]];
+        //        cell.imageView.image = [UIImage imageWithData:imageData];
         cell.question = question;
+        //cell.imageView.image = [UIImage imageNamed:@"question-block"];
         [self fetchImageWithCell:cell andQuestion:question];
         
     }
@@ -231,47 +232,47 @@
 }
 
 /*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
+ // Override to support conditional editing of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+ // Return NO if you do not want the specified item to be editable.
+ return YES;
+ }
+ */
 
 /*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
+ // Override to support editing the table view.
+ - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+ if (editingStyle == UITableViewCellEditingStyleDelete) {
+ // Delete the row from the data source
+ [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+ } else if (editingStyle == UITableViewCellEditingStyleInsert) {
+ // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+ }
+ }
+ */
 
 /*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
+ // Override to support rearranging the table view.
+ - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+ }
+ */
 
 /*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
+ // Override to support conditional rearranging of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+ // Return NO if you do not want the item to be re-orderable.
+ return YES;
+ }
+ */
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end
